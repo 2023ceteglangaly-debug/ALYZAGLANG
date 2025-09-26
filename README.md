@@ -1,1 +1,1 @@
-# ALYZAGLANG
+HELLO, Still in 3rd though just 3 hours older. By the way this is my Non- Error code. I work fine but our teacher hate it when, our UI are all alike, so I'm going to make it unique using AI. Now... Onward!

@@ -1,0 +1,47 @@
+@model Alyza_Glang__Final.ViewModels.ReservationAddViewModel
+
+@{
+    ViewData["Title"] = "Add Reservation";
+}
+
+<div class="main-content-card">
+
+    @* It's good practice to show which restaurant is being booked *@
+    <h1>Reserve at @Model.RestaurantName</h1> 
+    <hr />
+
+    <form asp-action="Add">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        @* --- STEP 2: Add a hidden field to remember the RestaurantId --- *@
+        <input type="hidden" asp-for="Reservation.RestaurantId" />
+
+        @* --- STEP 3: Update all form fields to point to "Reservation.PropertyName" --- *@
+        <div class="form-group mb-3">
+            <label asp-for="Reservation.Name" class="control-label"></label>
+            <input asp-for="Reservation.Name" class="form-control" placeholder="Enter your full name" />
+            <span asp-validation-for="Reservation.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Reservation.Mobile" class="control-label"></label>
+            <input asp-for="Reservation.Mobile" class="form-control" placeholder="Enter your mobile number" />
+            <span asp-validation-for="Reservation.Mobile" class="text-danger"></span>
+        </div>
+        
+        <div class="form-group mb-3">
+            <label asp-for="Reservation.date" class="control-label"></label>
+            <input asp-for="Reservation.date" class="form-control" />
+            <span asp-validation-for="Reservation.date" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-4">
+            <input type="submit" value="Add Reservation" class="btn btn-primary" />
+        </div>
+    </form>
+    
+    <div class="mt-4">
+        <a asp-controller="Restaurant" asp-action="Index" class="back-link">Back to Restaurant List</a>
+    </div>
+
+</div>

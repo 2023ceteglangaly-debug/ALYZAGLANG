@@ -1,13 +1,9 @@
-using RestReservation.ViewModels;
+using Alyza_Glang__Final.Models;
 
-namespace RestReservation.ViewModels
+namespace Alyza_Glang__Final.ViewModels
 {
     public class ReservationListViewModel
     {
-        public IEnumerable<Reservation>? Reservations { get; set; }
-    }
-
-    public class Reservation
-    {
+        public IEnumerable<Reservation> Reservations { get; set; }
     }
 }

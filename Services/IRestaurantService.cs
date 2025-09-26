@@ -1,26 +1,17 @@
 using MongoDB.Bson;
-using RestReservation;
+using Alyza_Glang__Final.Models;
 
-namespace RestReservation.Services
+namespace Alyza_Glang__Final.Services
 {
     public interface IRestaurantService
     {
-        IEnumerable<RestaurantModel> GetAllRestaurants();
+        IEnumerable<Restaurant>GetAllRestaurants();
+        Restaurant? GetRestaurantById(ObjectId id);
 
-        RestaurantModel? GetRestaurantById(ObjectId id);
-
-        void AddRestaurant(RestaurantModel newRestaurant);
-
-        void EditRestaurant(RestaurantModel updatedRestaurant);
-        
-        void DeleteRestaurant(RestaurantModel restaurantToDelete);
+        void AddRestaurant(Restaurant newRestaurant);
+        void EditRestaurant(Restaurant updatedRestaurant);
+        void DeleteRestaurant(Restaurant restaurantToDelete);
+        // ...
     }
 
-    public class ObjectId
-    {
-    }
-
-    public class RestaurantModel
-    {
-    }
 }

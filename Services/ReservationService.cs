@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
-using ALYZAGLANG.Models;
-using ALYZAGLANG;
+using Alyza_Glang__Final.Models;
 
-namespace RestRes.Services
+namespace Alyza_Glang__Final.Services
 {
     public class ReservationService : IReservationService
     {
@@ -14,33 +13,58 @@ namespace RestRes.Services
             _restaurantDbContext = restaurantDbContext;
         }
 
+        public IEnumerable<Reservation> GetAllReservations()
+        {
+            // Replaced NotImplementedException with the actual database query
+            return _restaurantDbContext.Reservations.OrderByDescending(r => r.date).ToList();
+        }
+
+        public Reservation GetReservationById(ObjectId id)
+        {
+            // Replaced NotImplementedException with the actual database query
+            var reservation = _restaurantDbContext.Reservations.FirstOrDefault(r => r.Id == id);
+            return reservation ?? throw new ArgumentException("Reservation not found.");
+        }
+
         public void AddReservation(Reservation newReservation)
         {
-            var bookedRestaurant = _restaurantDbContext.Restaurants
-                .FirstOrDefault(c => c.Id == newReservation.RestaurantId);
-
+            var bookedRestaurant = _restaurantDbContext.Restaurants.FirstOrDefault(c => c.Id == newReservation.RestaurantId);
             if (bookedRestaurant == null)
             {
                 throw new ArgumentException("The restaurant to be reserved cannot be found.");
             }
-
             newReservation.RestaurantName = bookedRestaurant.name;
             _restaurantDbContext.Reservations.Add(newReservation);
-            _restaurantDbContext.ChangeTracker.DetectChanges();
-            Console.WriteLine(_restaurantDbContext.ChangeTracker.DebugView.LongView);
             _restaurantDbContext.SaveChanges();
         }
 
+        public void EditReservation(Reservation updatedReservation)
+        {
+            var reservationToUpdate = _restaurantDbContext.Reservations.FirstOrDefault(r => r.Id == updatedReservation.Id);
+            if (reservationToUpdate != null)
+            {
+                reservationToUpdate.date = updatedReservation.date;
+                reservationToUpdate.Name = updatedReservation.Name;
+                reservationToUpdate.Mobile = updatedReservation.Mobile;
+                reservationToUpdate.RestaurantId = updatedReservation.RestaurantId;
+                // Always set RestaurantName from RestaurantId
+                var bookedRestaurant = _restaurantDbContext.Restaurants.FirstOrDefault(c => c.Id == updatedReservation.RestaurantId);
+                reservationToUpdate.RestaurantName = bookedRestaurant != null ? bookedRestaurant.name : null;
+                _restaurantDbContext.Reservations.Update(reservationToUpdate);
+                _restaurantDbContext.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("The reservation to update cannot be found.");
+            }
+        }
+        
         public void DeleteReservation(Reservation reservation)
         {
-            var reservationToDelete = _restaurantDbContext.Reservations
-                .FirstOrDefault(b => b.Id == reservation.Id);
-
+            var reservationToDelete = _restaurantDbContext.Reservations.FirstOrDefault(b => b.Id == reservation.Id);
             if (reservationToDelete != null)
             {
                 _restaurantDbContext.Reservations.Remove(reservationToDelete);
-                _restaurantDbContext.ChangeTracker.DetectChanges();
-                Console.WriteLine(_restaurantDbContext.ChangeTracker.DebugView.LongView);
                 _restaurantDbContext.SaveChanges();
             }
             else
@@ -48,24 +72,5 @@ namespace RestRes.Services
                 throw new ArgumentException("The reservation to delete cannot be found.");
             }
         }
-
-        public void EditReservation(Reservation updatedReservation)
-        {
-            // Method body was empty in the provided code
-        }
-    }
-
-    public class RestaurantReservationDbContext : DbContext
-    {
-        public DbSet<Restaurant> Restaurants { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
-    }
-
-    public class Restaurant
-    {
-        internal ObjectId Id;
-        internal string? name;
-        internal object? cuisine;
-        internal object? borough;
     }
 }

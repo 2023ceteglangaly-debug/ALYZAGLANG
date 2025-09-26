@@ -1,0 +1,365 @@
+/* =================================================================
+   Dashboard Layout (Sidebar, Topbar, Main Content)
+   ================================================================= */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f7f8fa;
+}
+
+.sidebar {
+    width: 320px;
+    background: #fff;
+    box-shadow: 2px 0 16px rgba(60,8,83,0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 1rem 1rem 1rem;
+}
+.sidebar-header {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3c0853;
+    margin-bottom: 2rem;
+}
+.sidebar-logo {
+    font-family: var(--font-handwriting);
+    color: #b8860b;
+    font-size: 2.2rem;
+    white-space: normal;
+    word-break: break-word;
+    display: block;
+}
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar-nav li {
+    margin-bottom: 1.2rem;
+}
+.sidebar-nav a {
+    color: #3c0853;
+    font-size: 1.1rem;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+    display: block;
+}
+.sidebar-nav a:hover {
+    background: #f3e6ff;
+}
+.sidebar-footer {
+    margin-top: 2rem;
+    text-align: center;
+}
+.add-menu-btn {
+    background: #b8860b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(60,8,83,0.08);
+}
+.add-menu-btn:hover {
+    background: #d6a646;
+}
+
+.main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f7f8fa;
+}
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 1.2rem 2rem;
+    box-shadow: 0 2px 8px rgba(60,8,83,0.08);
+    border-bottom: 1px solid #eee;
+}
+.search-bar input {
+    width: 320px;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    font-size: 1rem;
+    background: #f7f8fa;
+}
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 1.3rem;
+}
+.user-info {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: #3c0853;
+}
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    background: #f7f8fa;
+}
+.footer {
+    background: #3c0853;
+    color: #b8860b;
+    border-top: 1px solid #eee;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 1rem;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+}
+/* =================================================================
+   New Gold & Black Palette (Based on your image)
+   ================================================================= */
+:root {
+    /* Color Palette from your image */
+    --primary-gold: #d6a646;      /* Main dark gold for buttons/links */
+    --accent-gold: #b18f06;       /* Lighter gold for hover effects */
+    --light-beige-text: #855c0a;  /* Main text color */
+    --dark-grey-surface: #3d0e63; /* For tables, cards, navbar */
+    --true-black-bg: #3e0857;      /* For the main page background */
+    --danger-color: #c30f21;      /* Standard red for delete buttons */
+
+    /* Typography */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+:root {
+    /* ... your color palette ... */
+
+    /* Typography */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Lato', sans-serif;
+    
+    /* --- ADD THIS LINE --- */
+    --font-handwriting: 'Dancing Script', cursive; 
+}
+
+    /* Override main content and message text color to white */
+    p, .main-content, .message, .no-reservations, .no-restaurants {
+           color: #b8860b !important;
+           text-shadow: 0 1px 4px rgba(60,8,83,0.18);
+    }
+
+/* =================================================================
+   General Body & Typography
+   ================================================================= */
+body {
+    font-family: var(--font-body);
+    background-color: var(--true-black-bg); /* Black page background */
+    color: var(--light-beige-text);         /* Beige text */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-handwriting);
+    font-weight: 700;
+    color: #b8860b;
+    text-shadow: 0 2px 8px rgba(60,8,83,0.18);
+}
+
+
+/* Make all links gold and brighter on hover */
+a {
+    color: var(--primary-gold);
+    transition: color 0.2s ease-in-out;
+}
+a:hover {
+    color: var(--accent-gold);
+}
+
+/* =================================================================
+   Navigation Bar
+   ================================================================= */
+.navbar {
+    background-color: rgba(50, 50, 50, 0.8); /* Dark Grey, transparent */
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--primary-gold) !important;
+}
+
+.nav-link {
+    color: var(--light-beige-text) !important; /* Visible beige text */
+}
+.nav-link:hover {
+    color: var(--accent-gold) !important;
+}
+
+/* =================================================================
+   Buttons
+   ================================================================= */
+.btn {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    padding: 8px 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* All main buttons are gold with black text */
+.btn-primary, .btn-info, .btn-success {
+    background-color: var(--primary-gold);
+    color: #460303;
+}
+.btn-primary:hover, .btn-info:hover, .btn-success:hover {
+    background-color: var(--accent-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: rgb(243, 172, 255);
+}
+.btn-danger:hover {
+    transform: translateY(-2px);
+}
+
+/* =================================================================
+   Tables & Main Content Card (REVISED FIX FOR WHITE TABLE)
+   ================================================================= */
+
+/* This is the main dark grey rounded container */
+.main-content-card {
+    background-color: var(--dark-grey-surface);
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    border: 1px solid #4a4a4a;
+}
+
+.content-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 24px; /* Larger radius for the outer frame */
+    padding: 0.5rem; /* Small padding to create the gap */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+/* This is the new inner panel that holds the content */
+.content-card-body {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 18px; /* Slightly smaller radius for the inner panel */
+    padding: 1.5rem; /* The main padding for your content */
+}
+
+/* Base table style */
+.table {
+    background-color: transparent;
+    width: 100%;
+    border-spacing: 0; /* Important for clean lines */
+}
+
+/* Styles the white header block */
+.table thead {
+    background-color: #fbc4ff;
+    color: #000000;
+}
+.table thead th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* --- THIS IS THE CRITICAL FIX --- */
+/* This forces the table body rows to be transparent, showing the card behind it */
+.table tbody tr {
+    background-color: transparent !important; 
+}
+/* --- END OF FIX --- */
+
+/* Styles the individual cells in the body */
+.table tbody td {
+    vertical-align: middle;
+    padding: 1rem;
+    color: var(--light-beige-text);
+    /* This creates the subtle line between rows */
+    border-bottom: 1px solid #4a4a4a; 
+}
+
+/* Removes the line from the very last row for a cleaner look */
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* =================================================================
+   Footer
+   ================================================================= */
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: var(--true-black-bg);
+    border-top: 1px solid var(--dark-grey-surface);
+    margin-top: auto;
+}
+
+/* =================================================================
+   Justice for "Back to list" and other secondary links
+   ================================================================= */
+
+/* This styles links like "Back to list" or "Cancel" */
+.back-link {
+    display: inline-block;
+    color: var(--light-beige-text);
+    text-decoration: none; /* Removes the default underline */
+    font-weight: 600;
+    padding: 5px 0;
+    margin-top: 15px; /* Adds space above it */
+    position: relative;
+    transition: color 0.2s ease-in-out;
+}
+
+/* This creates a stylish gold underline that appears on hover */
+.back-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0); /* Starts hidden */
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-gold);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.back-link:hover {
+    color: var(--accent-gold); /* Text becomes brighter on hover */
+}
+
+.back-link:hover::after {
+    transform: scaleX(1); /* The underline animates in on hover */
+    transform-origin: bottom left;
+}
+
+.sidebar-top .sidebar-title {
+    /* --- CHANGE THIS LINE --- */
+    font-family: var(--font-handwriting);
+    font-size: 40px; /* Increased size for the new font */
+    font-weight: 700;
+    margin: 1rem 0 2rem 0;
+    color: var(--heading-gold);
+}

@@ -1,0 +1,47 @@
+@model Alyza_Glang__Final.Models.Reservation
+
+@{
+    ViewData["Title"] = "Edit Reservation";
+}
+
+<div class="main-content-card">
+
+    <h1>Edit Reservation</h1>
+    <p>Update the details for this reservation below.</p>
+    <hr />
+
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        @* These hidden fields are essential. They tell the server which reservation to update. *@
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="RestaurantId" />
+
+        @* --- EDITABLE NAME FIELD --- *@
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        @* --- EDITABLE MOBILE FIELD --- *@
+        <div class="form-group mb-3">
+            <label asp-for="Mobile" class="control-label"></label>
+            <input asp-for="Mobile" class="form-control" />
+            <span asp-validation-for="Mobile" class="text-danger"></span>
+        </div>
+
+        @* --- EDITABLE DATE FIELD --- *@
+        <div class="form-group mb-3">
+            <label asp-for="date" class="control-label"></label>
+            <input asp-for="date" class="form-control" />
+            <span asp-validation-for="date" class="text-danger"></span>
+        </div>
+
+        @* --- SUBMIT BUTTON --- *@
+        <div class="form-group mt-4">
+            <input type="submit" value="Save Changes" class="btn btn-primary" />
+        </div>
+    </form>
+
+</div>
